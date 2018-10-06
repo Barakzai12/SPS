@@ -35,62 +35,65 @@ class Vehical extends Driver
           System.out.print("Type:");
           type=read.next();
           System.out.print("Color:");
-          color=read.next();
-          
+          color=read.next();   
       }
+      
 }
 class Time extends Vehical
 {
      String Entered_time;
      String Exit_time;
-          void time_info()
-          {
-              System.out.println("============> Time Details <============");
-              System.out.print("Entered Time");
-              Entered_time=read.next();
-          }
+     
 }
 class Report extends Time
 {
     void display_report()
     {
         System.out.println("============> Report <============");
-        System.out.println("Driver id\tName\tLicence\nVehical_Plate_no:\tType\tColor");
+        System.out.println("Driver id\tName\tLicence");
+        System.out.println(Id+"\t\t"+name+"\t"+Licence);
+        System.out.println("Vehical_Plate_no:\tType\tColor");
+        System.out.println(Plate_no+"\t\t\t"+type+"\t"+color);
     }
 }
 public class SPS {
 
     public static void main(String[] args) {
          Report rp=new Report();
-         Vehical vh[]=new Vehical[10];
          Scanner read=new Scanner(System.in);
          int choice,did;
-         System.out.println("===========> Smart Parking System <===========");
+         
+         for(;;)
+         {
+         System.out.println("===========> Smart Parking System <===========");   
          System.out.println("1:Register\n2:Report\n3:Exit\n4:Close");
          System.out.println("=======================================");
          choice=read.nextInt();
          switch(choice)
          {
              case 1:
-                 for(int i=0;i<10;i++)
-                 {
-                     vh[i]=new Vehical();
-                     vh[i].Vehical_info();
-                     vh[i].getDriver_info();
-                 }
                  rp.Vehical_info();
+                 rp.getDriver_info();
                  break;
              case 2:
-               
+                 rp.display_report();
+                 break;
              case 3:
                         System.out.print("Enter dirver id:");
                         did=read.nextInt();
-                        if(did==rp.Id)
+                        if(did==rp.Id){
                             rp.display_report();
+                        }
+                        else
+                        {
+                            System.out.println("Invalid Id"); 
+                        }
+                        break;
              case 4:
                  System.exit(0);    
              default:
                  System.out.println("Invalid Option");
+         }
          }
     }
 }
